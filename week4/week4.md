@@ -284,6 +284,61 @@ Since, register doesn't have an address we cannot request it's address using `&`
 
   Output: `89`
 
+# Memory layout in C
+The binary executable file, which was created after compiling the.c file, loads in a structured fashion composed of 6 segments or regions. Each region has read/write permissions and stores a particular section of the code. Certain segments' sizes are fixed, whereas others could grow or shrink at runtime.
+
+Memory layout diagram.
+
+We have studied storage classes, dynamic and static memory allocation, stack, heap and text segment lets put all this together using following example. Copy the code, compile and run it.
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int G_i = 23 ;   /* Initialized global variable.*/
+int G_u;   /* Uninitialized global variable.*/
+
+int main(int argc, char **argv)
+{
+    static int s;   /* static local variable, stored in BSS segment */
+    int a;   /* automatic variable, stored on stack */
+    int *p;   /* pointer variable for malloc below */
+
+    p = malloc(sizeof(int));
+
+    printf("&G_i= %p\n", &G_i);
+    printf("&G_u= %p\n", &G_u);
+    printf("&s   = %p\n", &s);
+    printf("&a   = %p\n", &a);
+    printf("&p   = %p\n", &p);
+    printf("p    = %p\n", p);
+
+    free(p);
+
+    return 0;
+}
+```
+
+You will get output similar to this.
+
+![](../assets/week4/variable_addresses.png)
+
+// Maybee add a table for this.
+`G_u` belongs to the uninitialized data segment.
+`G_i` belongs to the initialized data segment.
+`s` belongs to uninitialized data segment.
+`a` belongs to stack frame of main function.
+`p` belongs to stack frame fo the main function but points inside the heap segment.
+
+# Function pointers.
+
+In the above code lets try to print the address of main.
+```
+printf("main = %p\n", main);
+```
+You will get output similar to this.
+
+![](../assets/week4/function_pointer.png)
+
 # Byte ordering
 
 Little and big endian are two ways of storing multibyte data-types ( int, float, etc). In little endian machines, last byte of binary representation of the multibyte data-type is stored first. On the other hand, in big endian machines, first byte of binary representation of the multibyte data-type is stored first.

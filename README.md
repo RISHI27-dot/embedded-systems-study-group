@@ -16,7 +16,15 @@
     - Basic of ADC and DAC, ESP32 ADC and DAC
     - Bit manipulations
     - GPIO
-* [Week 6:](week6/week6.md) FreeRTOS
+* [Week 6:](week6/week6.md)
+    - Memory layout in C
+    - Function pointers
+    - Struct padding
+    - Bitfields, Bit Padding, Bit manipulation examples
+    - Header Gaurds
+    - Pointer arithmetic
+    - Debugging using GDB
+* [Week 7:](week6/week6.md) FreeRTOS
 ## Conducted by
 - [Sravan Chittupalli](https://github.com/SravanChittupalli)
 - [Vedant Paranjape](https://github.com/VedantParanjape)
